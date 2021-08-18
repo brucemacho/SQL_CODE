@@ -1,6 +1,9 @@
 ```sql
+# Sometimes you need to filter the max DATA for each row:
 
-SELECT *
-FROM LIST
+SELECT ID, PRODUCT_NAME, PRODUCT_VALUE, STOCK, DATA_PROCESS
+FROM STORE_STOCK SS
+WHERE DATA_PROCESS = (SELECT MAX(DATA_PROCESS) FROM STORE_STOCK SSS
+                      WHERE SS.ID = SSS.ID)
 
 ```
